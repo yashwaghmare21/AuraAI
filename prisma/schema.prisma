@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Order {
+  id               String      @id // e.g., "ORD-101"
+  customerName     String
+  productName      String
+  price            Int         // Stored in cents/paise
+  currency         String      @default("INR")
+  status           String      // PROCESSING, OUT_FOR_DELIVERY, DELIVERED, CANCELLED
+  trackingCarrier  String?
+  trackingNumber   String?
+  expectedDelivery String?
+  deliveredAt      DateTime?
+  orderedAt        DateTime    @default(now())
+}
+
+model CallSummary {
+  id               String   @id @default(uuid())
+  orderId          String?
+  customerIntent   String
+  resolutionStatus String
+  callSummary      String
+  createdAt        DateTime @default(now())
+}
