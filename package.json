@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run src/lib"
+    "test": "vitest run src/lib",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@google/genai": "^2.24.0",
