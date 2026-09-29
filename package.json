@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "db:setup": "prisma db push --skip-generate && node --experimental-strip-types prisma/seed.ts",
+    "dev": "npm run db:setup && next dev",
+    "build": "npm run db:setup && next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run src/lib"
+    "test": "npm run db:setup && vitest run src/lib"
   },
   "dependencies": {
     "@google/genai": "^2.24.0",
