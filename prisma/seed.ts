@@ -1,5 +1,10 @@
 import { PrismaClient } from '@prisma/client'
 
+if (process.env.VERCEL) {
+  console.log('Skipping seed on Vercel build to prevent PrismaClientInitializationError');
+  process.exit(0);
+}
+
 const prisma = new PrismaClient()
 
 async function main() {
